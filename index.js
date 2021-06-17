@@ -10,11 +10,11 @@ const app = express();
 const authInstance = new UserAgentService();
 
 app
-  .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
+app.use(express.static(__dirname + '/client'));
 app.get("/", (req, res) => {
   // Instantiate the service to create the URL to call
   const userAgentUrlWithParameters = authInstance.generateUserAgentRequest();

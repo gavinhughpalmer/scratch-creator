@@ -1,11 +1,12 @@
 {
-  "name": "node-js-template",
+  "name": "scratch-creator",
   "version": "1.0.0",
-  "description": "joma's template",
+  "description": "Simple App to create scratch orgs",
   "main": "index.js",
   "dependencies": {
     "ejs": "^2.5.9",
     "express": "^4.16.3",
+    "jsforce": "^1.10.1",
     "request": "^2.85.0",
     "tape": "^4.9.0"
   },

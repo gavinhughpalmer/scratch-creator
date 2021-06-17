@@ -1,4 +1,4 @@
-const { UserAgentService } = require("./services/useragent");
+const { WebServerService } = require("./services/webserver");
 const express = require("express");
 const path = require("path");
 const request = require("request");
@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 // Pass in the repo URL through query params, then provide OAuth flow to Salesforce dev hub (ie must be production, or custom URL so could redirect straight away...)
 // Open up the oauth app to see how it was done in there
 const app = express();
-const authInstance = new UserAgentService();
+const authInstance = new WebServerService();
 
 app
   .set("views", path.join(__dirname, "views"))
@@ -17,11 +17,13 @@ app
 app.use(express.static(__dirname + '/client'));
 app.get("/", (req, res) => {
   // Instantiate the service to create the URL to call
-  const userAgentUrlWithParameters = authInstance.generateUserAgentRequest();
+  const authorizationUrl = authInstance.generateAuthorizationRequest();
+
+  // Launch the request to get the authorization code
 
   // Launch the HTTP GET request based on the constructed URL with parameters
-  console.log("Sending GET request: " + userAgentUrlWithParameters);
-  handleGetRequest(userAgentUrlWithParameters, res);
+  console.log("Sending GET request: " + authorizationUrl);
+  handleGetRequest(authorizationUrl, res);
   console.log(
     "Once user authorizes the app, a redirect will be performed to the oauthcallback page"
   );

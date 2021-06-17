@@ -37,6 +37,21 @@ class AuthService {
         return this.parseResults(remoteBody);
     }
 
+    /**
+     * Creates a HTTP POST request JSON object that can be passed along to the Express "request".
+     * @param {String} endpointUrl The url of the endpoint (authorization or token).
+     * @param {String} body The parameters to be passed to the endpoint as URL parameters (key1=value1&key2=value2&...).
+     * @returns JSON object containing information needed for sending the POST request.
+     */
+    createPostRequest(endpointUrl, body) {
+        return {
+            method: 'POST',
+            url: endpointUrl,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: body,
+        };
+    }
+
     parseResults(remoteBody) {
         let error;
         let accessTokenHeader;

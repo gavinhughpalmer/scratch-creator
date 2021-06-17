@@ -38,24 +38,30 @@ app.get("/oauthcallback", function (req, res) {
   let originalState = authInstance ? authInstance.state : undefined;
 
   console.log("Callback received, parsing response...");
-  // If an authorization code is returned, check the state and continue web-server flow.
-  if (returnedState === originalState) {
-    // Web Server instance was already created during first step of the flow, just send the request
-    let postRequest = authInstance.generateTokenRequest(code);
+  if (code) {
+    // If an authorization code is returned, check the state and continue web-server flow.
+    if (returnedState === originalState) {
+      // Web Server instance was already created during first step of the flow, just send the request
+      let postRequest = authInstance.generateTokenRequest(code);
 
-    // Send the request to the endpoint and specify callback function
-    handlePostRequest(postRequest, res);
+      // Send the request to the endpoint and specify callback function
+      handlePostRequest(postRequest, res);
+    } else {
+      res
+        .status(500)
+        .end(
+          "Error occurred: " +
+            "\nCross App / Site Request Forgery detected!" +
+            "\nReturned state: " +
+            returnedState +
+            "\nOriginal state: " +
+            originalState
+        );
+    }
   } else {
-    res
-      .status(500)
-      .end(
-        "Error occurred: " +
-          "\nCross App / Site Request Forgery detected!" +
-          "\nReturned state: " +
-          returnedState +
-          "\nOriginal state: " +
-          originalState
-      );
+      // If no authorization code is returned, render oauthcallback.
+      // We need client-side Javascript to get to the fragment (after #) of the URL.
+      res.render('oauthcallback');
   }
 });
 

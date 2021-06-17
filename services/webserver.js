@@ -13,7 +13,7 @@ class WebServerService extends AuthService {
         let endpointUrl = this.getAuthorizeEndpoint();
 
         // Create a state to prevent CSRF
-        this.state = Math.floor(Math.random() * 1000);
+        // this.state = Math.floor(Math.random() * 1000);
 
         // Generate the url to request the authorization code, including parameters
         let authorizationUrl =
@@ -24,8 +24,8 @@ class WebServerService extends AuthService {
             encodeURI(this.callbackURL) +
             '&response_type=' +
             responseType +
-            '&state=' +
-            this.state +
+            // '&state=' +
+            // this.state +
             '&scope=' +
             scope;
 

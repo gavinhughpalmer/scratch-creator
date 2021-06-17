@@ -1,6 +1,7 @@
 const { UserAgentService } = require("./services/useragent");
 const express = require("express");
 const path = require("path");
+const request = require("request");
 const PORT = process.env.PORT || 5000;
 
 // Pass in the repo URL through query params, then provide OAuth flow to Salesforce dev hub (ie must be production, or custom URL so could redirect straight away...)

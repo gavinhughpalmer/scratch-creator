@@ -12,7 +12,7 @@ class AuthService {
      * Return the base URL for sending any HTTP requests to
      */
     getBaseUrl() {
-        return 'https://login.salesforce.com/';
+        return 'https://login.salesforce.com';
     }
 
     /**

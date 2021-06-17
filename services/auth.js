@@ -4,7 +4,7 @@ class AuthService {
         this.clientId = process.env.CLIENT_ID;
         this.clientSecret = process.env.CLIENT_SECRET;
         this.callbackURL = process.env.CALLBACK_URL;
-        this.state = '123';
+        this.state;
         this.apiVersion = 'v45.0';
     }
 

@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
 app.get("/oauthcallback", function (req, res) {
   let code = req.query.code;
   let returnedState = req.query.state;
+  console.log(authInstance);
   let originalState = authInstance ? authInstance.state : undefined;
 
   console.log("Callback received, parsing response...");

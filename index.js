@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 // Pass in the repo URL through query params, then provide OAuth flow to Salesforce dev hub (ie must be production, or custom URL so could redirect straight away...)
 // Open up the oauth app to see how it was done in there
 const app = express();
-const authInstance = new UserAgentService(req.query.isSandbox);
+const authInstance = new UserAgentService();
 
 app
   .use(express.static(path.join(__dirname, "public")))

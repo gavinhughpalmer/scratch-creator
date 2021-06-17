@@ -1,5 +1,4 @@
 const { AuthService } = require('./auth');
-const base64url = require('base64-url');
 
 class WebServerService extends AuthService {
     constructor() {

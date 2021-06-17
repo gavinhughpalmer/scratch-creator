@@ -42,7 +42,7 @@ app.get("/oauthcallback", function (req, res) {
   console.log("Callback received, parsing response...");
   if (code) {
     // If an authorization code is returned, check the state and continue web-server flow.
-    if (returnedState === originalState) {
+    if (returnedState == originalState) {
       // Web Server instance was already created during first step of the flow, just send the request
       let postRequest = authInstance.generateTokenRequest(code);
 
